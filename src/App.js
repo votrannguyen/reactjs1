@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import {STAFFS,DEPARTMENTS} from './staffs.jsx'
+import {useState} from 'react'
+import Demo from './Demo';
+import dateFormat from 'dateformat';
 function App() {
+
+  //console.log(DEPARTMENTS[0]);
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello word
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div class="row">
+      {
+        STAFFS.map((item,index)=>(
+          <div className="col-lg-4 col-md-6 col-sm-12" key={item}>
+          
+          <Demo
+              
+              id={item.id} 
+              name={item.name} 
+              doB={ dateFormat(item.doB, "dd/mm/yyyy")} 
+              startDate={ dateFormat(item.startDate, "dd/mm/yyyy")}
+              department ={item.department.name}
+              annualLeave ={item.annualLeave}
+              overTime ={item.overTime}
+            >
+
+            </Demo>
+          </div>
+          
+        ))
+      }
     </div>
   );
 }
